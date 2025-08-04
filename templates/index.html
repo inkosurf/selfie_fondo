@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Subí tu Selfie</title>
+</head>
+<body style="text-align:center; font-family:sans-serif">
+  <h2>Subí una foto selfie</h2>
+  <form method="POST" enctype="multipart/form-data">
+    <input type="file" name="imagen" accept="image/*" required>
+    <br><br>
+    <button type="submit">Procesar imagen</button>
+  </form>
+
+  {% if link_resultado %}
+    <h3>Imagen procesada:</h3>
+    <a href="/{{ link_resultado }}" target="_blank">Descargar imagen</a><br>
+    <img src="/{{ link_resultado }}" width="300">
+  {% endif %}
+</body>
+</html>
