@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file
 from PIL import Image
 from rembg import remove
 import io
@@ -23,11 +23,15 @@ def index():
         fondo = fondo.resize(imagen_sin_fondo.size)
 
         imagen_final = Image.alpha_composite(fondo, imagen_sin_fondo)
-        imagen_final.save("static/final.png")
+        output_path = "/tmp/final.png"
+imagen_final.save(output_path)
+return send_file(output_path, as_attachment=True)
+
 
         return render_template("index.html", link_resultado="static/final.png")
 
     return render_template("index.html")
+
 
 
 
